@@ -1,0 +1,10 @@
+save file of number pairs.
+
+sort number pairs into 2 sets.
+
+for each set, order from least to greatest.
+
+compare sets use absolute value to keep numbers positive. 
+quick maths:
+            n != len(p) do n+=1 abs(p1[n] - p2[n]) 
+where [n] is the index to a single byte and (p) is an array of numbers  
