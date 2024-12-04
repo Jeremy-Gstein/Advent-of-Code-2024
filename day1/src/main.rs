@@ -5,7 +5,6 @@ use std::io::{self, BufReader, BufRead};
 fn read_lines(file_path: &str) -> Result<(), Box<dyn std::error::Error>> {
     let file = File::open(file_path)?;
     let reader = BufReader::new(file);
-    let index: usize = 0;
     let mut day1_answer: i32 = 0;
     for line in reader.lines() {
         let line = line?;
@@ -24,21 +23,18 @@ fn read_lines(file_path: &str) -> Result<(), Box<dyn std::error::Error>> {
             chars.reverse();
             let sorted2: String = chars.into_iter().collect();
 
-            assert!(sorted1.len() == sorted2.len()); 
-            for index in 0..sorted1.len() {
-                let num1: char = decode_difference(index, &sorted1);
-                let num2: char = decode_difference(index, &sorted2);
-                let diff: i32 = (num1 as i32 - num2 as i32).abs();
-                some_sum += diff;
-                println!("{} - {} = {}", num1, num2, diff);
-            }            
-            
+            let num1: i32 = sorted1.parse().unwrap();
+            let num2: i32 = sorted2.parse().unwrap();
+            let diff: i32 = (num1 - num2).abs();
+            some_sum += diff;
+            println!("{} - {} = {}", num1, num2, diff);
+
             println!("Total: {}", some_sum);
             println!("Origin: {} {}", parts[0], parts[1]);
             println!("Sorted: {} {}", sorted1, sorted2);
             //dayday1_answer += some_sum;
             println!("{} += {}", day1_answer, some_sum);
-            day1_answer += some_sum;
+            day1_answer = some_sum;
         }
         //day1_answer += some_sum;
     }
@@ -46,7 +42,7 @@ fn read_lines(file_path: &str) -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 
-// take a reference to a string of numbers example "312142" and return a single byte.
+/* take a reference to a string of numbers example "312142" and return a single byte.
 fn decode_difference(index: usize, sorted_string: &str) -> char {
     //let sorted_string = sorted_string;
     let bytes = sorted_string.as_bytes();
@@ -59,6 +55,7 @@ fn decode_difference(index: usize, sorted_string: &str) -> char {
     return first_byte_decodes;
             
 }
+*/
 
 
 fn sort_numbers(numbers: &str) -> String {
